@@ -7,5 +7,12 @@ import { IGif } from '@giphy/js-types';
   styleUrls: ['./gif.component.scss'],
 })
 export class GifComponent {
+  /**
+   * input gif property
+   *
+   * @memberof GifComponent
+   * @public
+   * @type {IGif}
+   */
   @Input() gif: IGif;
 }
