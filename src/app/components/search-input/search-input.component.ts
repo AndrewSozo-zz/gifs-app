@@ -56,7 +56,7 @@ export class SearchInputComponent implements OnDestroy {
   }
 
   /**
-   * method for emit search term
+   * method for emit search query
    *
    * @memberof SearchInputComponent
    * @param searchTextValue

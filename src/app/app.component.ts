@@ -26,13 +26,13 @@ export class AppComponent implements OnInit {
    */
   page = 1;
   /**
-   * property term contains current search term
+   * property query contains current search query
    *
    * @memberof AppComponent
    * @public
    * @type {string}
    */
-  term = '';
+  query = '';
 
   constructor(private httpService: HttpService) {}
 
@@ -47,17 +47,17 @@ export class AppComponent implements OnInit {
   }
 
   /**
-   * async method search for calling httpService.search; define initial term value
+   * async method search for calling httpService.search; define initial query value
    *
    * @memberof AppComponent
    * @param searchWord
    * @public
    */
   async search(searchWord?: string) {
-    searchWord?.length ? (this.term = searchWord) : (this.term = 'cat');
+    searchWord?.length ? (this.query = searchWord) : (this.query = 'cat');
     this.page = 1;
 
-    this.gifsResult = await this.httpService.search(this.term, {
+    this.gifsResult = await this.httpService.search(this.query, {
       limit: 10,
       offset: this.page,
     });
@@ -72,7 +72,7 @@ export class AppComponent implements OnInit {
    */
   async changePage(page: number) {
     this.page = page;
-    this.gifsResult = await this.httpService.search(this.term, {
+    this.gifsResult = await this.httpService.search(this.query, {
       offset: this.page,
       limit: 10,
     });

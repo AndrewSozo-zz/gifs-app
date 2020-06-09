@@ -19,14 +19,14 @@ export class HttpService {
    * async search method for getting search data from GiphyFetch Api;
    *
    * @memberof HttpService
-   * @param term
+   * @param query
    * @param options
    * @public
    * @returns {Promise<GifsResult>}
    */
-  async search(term: string, options: SearchOptions): Promise<GifsResult> {
+  async search(query: string, options: SearchOptions): Promise<GifsResult> {
     try {
-      return await this.gf.search(term, options);
+      return await this.gf.search(query, options);
     } catch (error) {
       throw error;
     }
