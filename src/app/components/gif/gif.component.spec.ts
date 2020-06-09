@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GifComponent } from './gif.component';
-import { By } from '@angular/platform-browser';
 import { IGif } from '@giphy/js-types';
 
 const gif = {
@@ -25,23 +24,19 @@ describe('GifComponent', () => {
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(GifComponent);
+        component = fixture.componentInstance;
         debugElement = fixture.debugElement;
-        fixture.detectChanges();
       });
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GifComponent);
-    component = fixture.componentInstance;
+  it('should create component instance', () => {
     fixture.detectChanges();
+    expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
+  it('should check if gif exist', () => {
     component.gif = gif as IGif;
     fixture.detectChanges();
-    const titleValidationMessage = debugElement.query(
-      By.css('img[data-qa=gif]')
-    );
-    expect(titleValidationMessage).toBeTruthy();
+    expect(component.gif).toEqual(gif as IGif);
   });
 });

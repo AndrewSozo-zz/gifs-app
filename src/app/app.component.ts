@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
    * @public
    * @type {string}
    */
-  query = '';
+  query = 'cat';
 
   constructor(private httpService: HttpService) {}
 

@@ -3,6 +3,7 @@ import {
   EventEmitter,
   Input,
   OnDestroy,
+  OnInit,
   Output,
 } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -22,17 +23,7 @@ import { debounceTime } from 'rxjs/operators';
   `,
   styleUrls: ['./search-input.component.scss'],
 })
-export class SearchInputComponent implements OnDestroy {
-  /**
-   * input placeholder property
-   *
-   * @memberof SearchInputComponent
-   * @public
-   * @readonly
-   * @type {string}
-   */
-  @Input() readonly placeholder = '';
-
+export class SearchInputComponent implements OnInit, OnDestroy {
   /**
    * output setValue property
    *
@@ -46,13 +37,13 @@ export class SearchInputComponent implements OnDestroy {
    * private property for search subject
    *
    * @memberof SearchInputComponent
-   * @private
+   * @public
    * @type {Subject}
    */
-  private searchSubject$: Subject<string> = new Subject();
+  searchSubject$: Subject<string> = new Subject();
 
-  constructor() {
-    this._setSearchSubscription();
+  ngOnInit(): void {
+    this.setSearchSubscription();
   }
 
   /**
@@ -70,9 +61,9 @@ export class SearchInputComponent implements OnDestroy {
    * private method for new subscription with debounce(500)
    *
    * @memberof SearchInputComponent
-   * @private
+   * @public
    */
-  private _setSearchSubscription() {
+  setSearchSubscription() {
     this.searchSubject$
       .pipe(debounceTime(500))
       .subscribe((searchValue: string) => {

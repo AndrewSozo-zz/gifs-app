@@ -13,7 +13,7 @@ describe('HttpService', () => {
     expect(service.gf.search).toBeTruthy();
   });
 
-  it('should get data from search()', async () => {
+  it('should call search method', async () => {
     const searchResult = await service.gf.search('cat', {
       limit: 10,
       offset: 1,
